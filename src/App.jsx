@@ -10,33 +10,36 @@ import { Toaster } from "@/components/ui/toaster";
 import Navbar from "@/components/Navbar";
 import TeamPage from "@/pages/TeamPage";
 import { Routes, Route } from "react-router-dom";
+import { HelmetProvider } from 'react-helmet-async';
 
 const App = () => {
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.5 }}
-      className="bg-midnight-black text-foreground min-h-screen flex flex-col"
-    >
-      <Navbar />
-      <main className="flex-grow">
-        <Routes>
-          <Route path="/" element={
-            <>
-              <HeroSection />
-              <AboutSection />
-              <EventsSection />
-              <JoinUsSection />
-              <ContactSection />
-            </>
-          } />
-          <Route path="/team" element={<TeamPage />} />
-        </Routes>
-      </main>
-      <Footer />
-      <Toaster />
-    </motion.div>
+    <HelmetProvider>
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.5 }}
+          className="bg-midnight-black text-foreground min-h-screen flex flex-col"
+        >
+          <Navbar />
+          <main className="flex-grow">
+            <Routes>
+              <Route path="/" element={
+                <>
+                  <HeroSection />
+                  <AboutSection />
+                  <EventsSection />
+                  <JoinUsSection />
+                  <ContactSection />
+                </>
+              } />
+              <Route path="/team" element={<TeamPage />} />
+            </Routes>
+          </main>
+          <Footer />
+          <Toaster />
+        </motion.div>
+    </HelmetProvider>
   );
 };
 
