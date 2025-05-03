@@ -8,7 +8,7 @@ import ContactSection from "@/components/sections/ContactSection";
 import Footer from "@/components/Footer";
 import { Toaster } from "@/components/ui/toaster";
 import Navbar from "@/components/Navbar";
-import TeamSection from "@/components/sections/TeamSection";
+import TeamPage from "@/pages/TeamPage";
 import { Routes, Route } from "react-router-dom";
 
 const App = () => {
@@ -27,11 +27,11 @@ const App = () => {
               <HeroSection />
               <AboutSection />
               <EventsSection />
-              <TeamSection />
               <JoinUsSection />
               <ContactSection />
             </>
           } />
+          <Route path="/team" element={<TeamPage />} />
         </Routes>
       </main>
       <Footer />

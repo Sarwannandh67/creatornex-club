@@ -11,7 +11,7 @@ const Sidebar = ({ isOpen, onClose }) => {
     { icon: Home, label: "Home", id: "home" },
     { icon: Info, label: "About", id: "about" },
     { icon: Calendar, label: "Events", id: "events" },
-    { icon: Users, label: "Team", id: "team" },
+    { icon: Users, label: "Team", to: "/team" },
     { icon: Mail, label: "Contact", id: "contact" },
   ];
 
@@ -35,6 +35,11 @@ const Sidebar = ({ isOpen, onClose }) => {
   };
 
   const handleNavClick = (item) => {
+    if (item.to) {
+      onClose();
+      return;
+    }
+    
     // If we're on the home page, scroll to section
     if (location.pathname === '/') {
       const element = document.getElementById(item.id);
@@ -85,14 +90,27 @@ const Sidebar = ({ isOpen, onClose }) => {
           <nav>
             <ul>
               {menuItems.map((item) => (
-                <li key={item.id}>
-                  <button
-                    onClick={() => handleNavClick(item)}
-                    className="w-full flex items-center gap-3 px-4 py-2 text-gray-300 hover:text-white hover:bg-white/5 rounded-lg transition-colors duration-200"
-                  >
-                    <item.icon className="h-5 w-5" />
-                    <span>{item.label}</span>
-                  </button>
+                <li key={item.to || item.id}>
+                  {item.to ? (
+                    <Link
+                      to={item.to}
+                      onClick={() => handleNavClick(item)}
+                      className={`w-full flex items-center gap-3 px-4 py-2 text-gray-300 hover:text-white hover:bg-white/5 rounded-lg transition-colors duration-200 ${
+                        location.pathname === item.to ? 'bg-white/10 text-white' : ''
+                      }`}
+                    >
+                      <item.icon className="h-5 w-5" />
+                      <span>{item.label}</span>
+                    </Link>
+                  ) : (
+                    <button
+                      onClick={() => handleNavClick(item)}
+                      className="w-full flex items-center gap-3 px-4 py-2 text-gray-300 hover:text-white hover:bg-white/5 rounded-lg transition-colors duration-200"
+                    >
+                      <item.icon className="h-5 w-5" />
+                      <span>{item.label}</span>
+                    </button>
+                  )}
                 </li>
               ))}
             </ul>

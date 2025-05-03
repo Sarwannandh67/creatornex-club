@@ -83,12 +83,14 @@ const Navbar = () => {
               >
                 Events
               </button>
-              <button
-                onClick={() => handleNavClick("team")}
-                className="text-gray-300 hover:text-white transition-colors"
+              <Link
+                to="/team"
+                className={`text-gray-300 hover:text-white transition-colors ${
+                  location.pathname === '/team' ? 'text-white' : ''
+                }`}
               >
                 Team
-              </button>
+              </Link>
               <button
                 onClick={() => handleNavClick("contact")}
                 className="text-gray-300 hover:text-white transition-colors"
