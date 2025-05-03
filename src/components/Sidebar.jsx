@@ -1,7 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Link, useLocation } from "react-router-dom";
-import { Home, Info, Calendar, Users, Mail, X } from "lucide-react";
+import { Home, Info, Calendar, Users, Mail, X, Rocket } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const Sidebar = ({ isOpen, onClose }) => {
@@ -115,10 +115,19 @@ const Sidebar = ({ isOpen, onClose }) => {
               ))}
             </ul>
           </nav>
+          
+          <div className="absolute bottom-8 left-0 right-0 px-4">
+            <Button 
+              onClick={() => handleNavClick({id: "join"})} 
+              className="w-full bg-gradient-to-r from-neon-blue/80 to-electric-purple/80 hover:from-neon-blue hover:to-electric-purple text-black font-bold py-3 text-lg button-glow-effect transform hover:scale-102 transition-all duration-300"
+            >
+              <Rocket className="mr-2 h-5 w-5" /> Join CreatorNex
+            </Button>
+          </div>
         </div>
       </motion.div>
     </>
   );
 };
 
-export default Sidebar; 
+export default Sidebar;

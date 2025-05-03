@@ -9,6 +9,7 @@ import Footer from "@/components/Footer";
 import { Toaster } from "@/components/ui/toaster";
 import Navbar from "@/components/Navbar";
 import TeamPage from "@/pages/TeamPage";
+import ScrollToTop from "@/components/ScrollToTop";
 import { Routes, Route } from "react-router-dom";
 import { HelmetProvider } from 'react-helmet-async';
 
@@ -38,6 +39,7 @@ const App = () => {
           </main>
           <Footer />
           <Toaster />
+          <ScrollToTop />
         </motion.div>
     </HelmetProvider>
   );

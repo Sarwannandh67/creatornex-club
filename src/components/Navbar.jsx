@@ -97,6 +97,12 @@ const Navbar = () => {
               >
                 Contact
               </button>
+              <Button
+                onClick={() => handleNavClick("join")}
+                className="bg-gradient-to-r from-neon-blue/80 to-electric-purple/80 hover:from-neon-blue hover:to-electric-purple text-black font-bold py-1 px-4 rounded-md button-glow-effect transform hover:scale-105 transition-all duration-300"
+              >
+                Join Us
+              </Button>
             </div>
           </div>
         </div>
