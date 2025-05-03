@@ -10,7 +10,7 @@
 
   const JoinUsSection = () => {
     const [formData, setFormData] = useState({
-      fullName: "", email: "", rollNumber: "", skills: "", role: "", links: ""
+      fullName: "", email: "", rollNumber: "", interests: "", role: "", profileLinks: ""
     });
     const [errors, setErrors] = useState({});
     const [isSubmitting, setIsSubmitting] = useState(false);
@@ -22,7 +22,7 @@
       if (!formData.email) tempErrors.email = "SRM Email ID is required.";
       else if (!/\S+@srmist\.edu\.in$/.test(formData.email)) tempErrors.email = "Please use a valid SRM Email ID (...@srmist.edu.in).";
       if (!formData.rollNumber) tempErrors.rollNumber = "Roll Number is required.";
-      if (!formData.skills) tempErrors.skills = "Please select your skills/interests.";
+      if (!formData.interests) tempErrors.interests = "Please select your skills/interests.";
       if (!formData.role) tempErrors.role = "Please select the role you're interested in.";
       setErrors(tempErrors);
       return Object.keys(tempErrors).length === 0;
@@ -39,40 +39,67 @@
        if (errors[name]) setErrors({ ...errors, [name]: "" });
     };
 
-    const handleSubmit = (e) => {
+    // Google Apps Script Web App URL - Latest deployed URL
+    const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbz2_QrzgcJ8s1eyN1tQSqgDi0jpyJANLRMcPzfGs4fGVKB3lMBwZ5eO-A45IitmbKDk/exec";
+
+    const handleSubmit = async (e) => {
       e.preventDefault();
       if (validate()) {
         setIsSubmitting(true);
-        setTimeout(() => {
-          try {
-            const applications = JSON.parse(localStorage.getItem("creatorNexApplications")) || [];
-            applications.push(formData);
-            localStorage.setItem("creatorNexApplications", JSON.stringify(applications));
-            toast({
-              title: "🚀 Application Sent!",
-              description: "Thanks for your interest! We'll review your application soon.",
-              duration: 5000,
-            });
-            setFormData({ fullName: "", email: "", rollNumber: "", skills: "", role: "", links: "" });
-            setErrors({});
-          } catch (error) {
-             toast({
-              title: "Submission Error",
-              description: "Could not save your application. Please try again.",
-              variant: "destructive",
-              duration: 5000,
-            });
-          } finally {
-             setIsSubmitting(false);
-          }
-        }, 1500);
-      } else {
-         toast({
-            title: "Validation Error",
-            description: "Please fill in all required fields correctly.",
+        
+        try {
+          // Prepare data in the format expected by the script
+          const data = {
+            fullName: formData.fullName,
+            email: formData.email,
+            rollNumber: formData.rollNumber,
+            interests: formData.interests,
+            role: formData.role,
+            profileLinks: formData.profileLinks || ""
+          };
+          
+          console.log("Submitting form data:", data);
+          
+          // Send data directly using fetch with JSON content type
+          await fetch(GOOGLE_SCRIPT_URL, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data),
+            mode: 'no-cors' // This is needed for cross-origin requests
+          });
+          
+          // Since we're using no-cors, we won't get a response we can read
+          // We'll assume success if no error is thrown
+          
+          console.log("Form submitted successfully");
+          
+          toast({
+            title: "🚀 Application Sent!",
+            description: "Thanks for your interest! We'll review your application soon.",
+            duration: 5000,
+          });
+          setFormData({ fullName: "", email: "", rollNumber: "", interests: "", role: "", profileLinks: "" });
+          setErrors({});
+        } catch (error) {
+          console.error('Error submitting form:', error);
+          toast({
+            title: "Submission Error",
+            description: "Could not save your application. Please try again.",
             variant: "destructive",
-            duration: 3000,
-         });
+            duration: 5000,
+          });
+        } finally {
+          setIsSubmitting(false);
+        }
+      } else {
+        toast({
+          title: "Validation Error",
+          description: "Please fill in all required fields correctly.",
+          variant: "destructive",
+          duration: 3000,
+        });
       }
     };
 
@@ -126,8 +153,8 @@
                   </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
-                    <Label htmlFor="skills" className="label-glow">Skills / Interests</Label>
-                    <Select name="skills" onValueChange={(value) => handleSelectChange("skills", value)} value={formData.skills}>
+                    <Label htmlFor="interests" className="label-glow">Skills / Interests</Label>
+                    <Select name="interests" onValueChange={(value) => handleSelectChange("interests", value)} value={formData.interests}>
                       <SelectTrigger id="skills" className="form-input-glow mt-1 w-full">
                         <SelectValue placeholder="Select your primary interest" />
                       </SelectTrigger>
@@ -140,7 +167,7 @@
                         <SelectItem value="Other">Other</SelectItem>
                       </SelectContent>
                     </Select>
-                     {errors.skills && <p className="text-red-400 text-sm mt-1">{errors.skills}</p>}
+                     {errors.interests && <p className="text-red-400 text-sm mt-1">{errors.interests}</p>}
                   </div>
                    <div>
                     <Label htmlFor="role" className="label-glow">Role You’re Interested In</Label>
@@ -158,8 +185,8 @@
                   </div>
                 </div>
                  <div>
-                    <Label htmlFor="links" className="label-glow">GitHub / LinkedIn (Optional)</Label>
-                    <Input id="links" name="links" value={formData.links} onChange={handleChange} placeholder="Paste your profile links here" className="form-input-glow mt-1" />
+                    <Label htmlFor="profileLinks" className="label-glow">GitHub / LinkedIn (Optional)</Label>
+                    <Input id="profileLinks" name="profileLinks" value={formData.profileLinks} onChange={handleChange} placeholder="Paste your profile links here" className="form-input-glow mt-1" />
                   </div>
                 <Button 
                   type="submit" 
