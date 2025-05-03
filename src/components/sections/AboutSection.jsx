@@ -72,7 +72,7 @@ const AboutSection = () => {
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <div className="flex items-start gap-4 p-4 md:p-6 rounded-xl bg-gradient-to-br from-cyan-400/40 via-blue-600/30 to-purple-600/40 border-2 border-gradient-to-r from-neon-blue to-electric-purple shadow-lg">
+                  <div className="flex items-start gap-4 p-4 md:p-6 rounded-xl bg-gradient-to-br from-cyan-400/30 via-blue-500/25 to-purple-500/30 border-2 border-gradient-to-r from-neon-blue/70 to-electric-purple/70 shadow-lg backdrop-blur-sm">
                     <div>
                       <ul className="list-disc list-inside space-y-3 md:space-y-4 text-gray-100 text-base sm:text-lg leading-relaxed">
                         <li>Empower SRM students to become AI creators and innovators through practical learning.</li>
@@ -103,7 +103,7 @@ const AboutSection = () => {
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <div className="flex items-start gap-4 p-4 md:p-6 rounded-xl bg-gradient-to-br from-cyan-400/40 via-blue-600/30 to-purple-600/40 border-2 border-gradient-to-r from-neon-blue to-electric-purple shadow-lg">
+                  <div className="flex items-start gap-4 p-4 md:p-6 rounded-xl bg-gradient-to-br from-blue-400/30 via-purple-500/25 to-cyan-400/30 border-2 border-gradient-to-r from-neon-blue/70 to-electric-purple/70 shadow-lg backdrop-blur-sm">
                     <div>
                       <ul className="list-disc list-inside space-y-3 md:space-y-4 text-gray-100 text-base sm:text-lg leading-relaxed">
                         <li>Conduct hands-on AI/ML workshops and sessions for practical learning.</li>

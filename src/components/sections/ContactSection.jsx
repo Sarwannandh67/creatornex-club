@@ -5,9 +5,9 @@ import Contact3DScene from "@/components/Contact3DScene";
 
 const ContactSection = () => {
   const contactInfo = [
-    { icon: Mail, label: "Email", value: "creatornex.srm@gmail.com", href: "mailto:creatornex.main@gmail.com" },
-    { icon: Linkedin, label: "LinkedIn", value: "Sarwan Nandh", href: "https://www.linkedin.com/company/creatornex/", target: "_blank" },
-    { icon: MapPin, label: "Location", value: "SRM University, Kattankulathur, Chennai", href: "#", noHoverEffect: true },
+    { icon: Mail, label: "Email", value: "creatornex.main@gmail.com", href: "mailto:creatornex.main@gmail.com" },
+    { icon: Linkedin, label: "LinkedIn", value: "CreatorNex LLC.", href: "https://www.linkedin.com/company/creatornex/", target: "_blank" },
+    { icon: MapPin, label: "Location", value: "SRM University, Kattankulathur, Chennai.", href: "#", noHoverEffect: true },
   ];
 
   const itemVariants = {

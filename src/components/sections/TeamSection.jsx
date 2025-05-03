@@ -54,10 +54,10 @@ const TeamMemberCard = ({ member, index, isFounder, isAdvisor }) => {
 
 const TeamSection = () => {
   const founders = [
-    { name: "Sarwan Nandh (Sarwan Thondamalla)", role: "President & Founder", description: "Leads the vision, strategy, and external partnerships." },
-    { name: "Salla Lohith", role: "Vice President & Co-Founder", description: "Drives internal operations and workshops." },
+    { name: "Salla Lohith", role: "President & Co-Founder", description: "Leads the vision, strategy, and external partnerships." },
+    { name: "Sarwan Nandh (Sarwan Thondamalla)", role: "Vice President & Co-Founder", description: "Drives internal operations and workshops." },
   ];
-  const advisor = { name: "Dr. R. Babu", role: "Faculty Advisor", description: "Department of Computer Science, SRM University. Mentoring students and building university partnerships." };
+  const advisor = { name: "Dr. R. Babu", role: "Faculty Incharge", description: "Department of Compututional Intelligence(CINTEL), SRM University. Mentoring students and building university partnerships." };
   const coreRoles = [
     { icon: Code, name: "Technical Lead", description: "Organizes AI/ML sessions and maintains GitHub repos." },
     { icon: CalendarCheck, name: "Event Coordinator", description: "Manages logistics, registrations, and venue planning." },
