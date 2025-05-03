@@ -155,7 +155,7 @@
                   <div>
                     <Label htmlFor="interests" className="label-glow">Skills / Interests</Label>
                     <Select name="interests" onValueChange={(value) => handleSelectChange("interests", value)} value={formData.interests}>
-                      <SelectTrigger id="skills" className="form-input-glow mt-1 w-full">
+                      <SelectTrigger id="interests" className="form-input-glow mt-1 w-full">
                         <SelectValue placeholder="Select your primary interest" />
                       </SelectTrigger>
                       <SelectContent>
