@@ -27,11 +27,11 @@ const App = () => {
               <HeroSection />
               <AboutSection />
               <EventsSection />
+              <TeamSection />
               <JoinUsSection />
               <ContactSection />
             </>
           } />
-          <Route path="/team" element={<TeamSection />} />
         </Routes>
       </main>
       <Footer />

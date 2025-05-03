@@ -26,17 +26,13 @@ const Navbar = () => {
     }
   };
 
-  const handleNavClick = (item) => {
-    if (item.to) {
-      setIsSidebarOpen(false);
+  const handleNavClick = (id) => {
+    // Only try to scroll if we're on the home page
+    if (location.pathname === '/') {
+      scrollTo(id);
     } else {
-      // Only try to scroll if we're on the home page
-      if (location.pathname === '/') {
-        scrollTo(item.id);
-      } else {
-        // If we're not on home page, navigate to home and then scroll
-        window.location.href = `/#${item.id}`;
-      }
+      // If we're not on home page, navigate to home and then scroll
+      window.location.href = `/#${id}`;
     }
   };
 
@@ -70,31 +66,31 @@ const Navbar = () => {
             {/* Desktop Navigation */}
             <div className="hidden md:flex items-center space-x-8">
               <button
-                onClick={() => handleNavClick({ id: "home" })}
+                onClick={() => handleNavClick("home")}
                 className="text-gray-300 hover:text-white transition-colors"
               >
                 Home
               </button>
               <button
-                onClick={() => handleNavClick({ id: "about" })}
+                onClick={() => handleNavClick("about")}
                 className="text-gray-300 hover:text-white transition-colors"
               >
                 About
               </button>
               <button
-                onClick={() => handleNavClick({ id: "events" })}
+                onClick={() => handleNavClick("events")}
                 className="text-gray-300 hover:text-white transition-colors"
               >
                 Events
               </button>
               <button
-                onClick={() => handleNavClick({ id: "team" })}
+                onClick={() => handleNavClick("team")}
                 className="text-gray-300 hover:text-white transition-colors"
               >
                 Team
               </button>
               <button
-                onClick={() => handleNavClick({ id: "contact" })}
+                onClick={() => handleNavClick("contact")}
                 className="text-gray-300 hover:text-white transition-colors"
               >
                 Contact

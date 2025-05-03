@@ -11,7 +11,7 @@ const Sidebar = ({ isOpen, onClose }) => {
     { icon: Home, label: "Home", id: "home" },
     { icon: Info, label: "About", id: "about" },
     { icon: Calendar, label: "Events", id: "events" },
-    { icon: Users, label: "Team", id: "team", to: "/team" },
+    { icon: Users, label: "Team", id: "team" },
     { icon: Mail, label: "Contact", id: "contact" },
   ];
 
@@ -35,22 +35,17 @@ const Sidebar = ({ isOpen, onClose }) => {
   };
 
   const handleNavClick = (item) => {
-    if (item.to) {
-      // If it's a page navigation link
-      onClose();
-    } else {
-      // If we're on the home page, scroll to section
-      if (location.pathname === '/') {
-        const element = document.getElementById(item.id);
-        if (element) {
-          element.scrollIntoView({ behavior: "smooth" });
-          onClose();
-        }
-      } else {
-        // If we're not on home page, navigate to home and then scroll
-        window.location.href = `/#${item.id}`;
+    // If we're on the home page, scroll to section
+    if (location.pathname === '/') {
+      const element = document.getElementById(item.id);
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
         onClose();
       }
+    } else {
+      // If we're not on home page, navigate to home and then scroll
+      window.location.href = `/#${item.id}`;
+      onClose();
     }
   };
 
@@ -88,29 +83,16 @@ const Sidebar = ({ isOpen, onClose }) => {
           </div>
 
           <nav>
-            <ul className="space-y-4">
+            <ul>
               {menuItems.map((item) => (
                 <li key={item.id}>
-                  {item.to ? (
-                    <Link
-                      to={item.to}
-                      onClick={() => handleNavClick(item)}
-                      className={`w-full flex items-center gap-3 px-4 py-2 text-gray-300 hover:text-white hover:bg-white/5 rounded-lg transition-colors duration-200 ${
-                        location.pathname === item.to ? "bg-white/10 text-white" : ""
-                      }`}
-                    >
-                      <item.icon className="h-5 w-5" />
-                      <span>{item.label}</span>
-                    </Link>
-                  ) : (
-                    <button
-                      onClick={() => handleNavClick(item)}
-                      className="w-full flex items-center gap-3 px-4 py-2 text-gray-300 hover:text-white hover:bg-white/5 rounded-lg transition-colors duration-200"
-                    >
-                      <item.icon className="h-5 w-5" />
-                      <span>{item.label}</span>
-                    </button>
-                  )}
+                  <button
+                    onClick={() => handleNavClick(item)}
+                    className="w-full flex items-center gap-3 px-4 py-2 text-gray-300 hover:text-white hover:bg-white/5 rounded-lg transition-colors duration-200"
+                  >
+                    <item.icon className="h-5 w-5" />
+                    <span>{item.label}</span>
+                  </button>
                 </li>
               ))}
             </ul>
